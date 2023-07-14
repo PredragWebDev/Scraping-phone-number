@@ -9,9 +9,9 @@ const fs = require('fs');
 const cheerio = require("cheerio");
 const { promises } = require('dns');
 
-const url = 'https://www.familysearch.org/en/';
+const url = 'https://www.remax.com/real-estate-agents';
 
-const getProductFromPOS = async ( from, to) => {
+const getPhone_number = async ( from, to) => {
   let count = 0;
   let result = [];
   let isError = false;
@@ -155,39 +155,6 @@ const getProductFromPOS = async ( from, to) => {
   
 };
 
-const getCount_of_page = async () => {
-  let browser = await puppeteer.launch({ headless: false });
-
-  let residential, bed, bath, price, currency, frequency, locate, area, studio;
-
-
-  let page = await browser.newPage();
-
-  await page.goto(url, { waitUntil: 'networkidle0', timeout: 0 });
-  const a_tags = await page.$$('a');
-  for (tag of a_tags) {
-    let textContent = await page.evaluate(el => el.textContent, tag);
-    if (textContent === 'Find') {
-      tag.click();
-    }
-  }
-
-  await page.waitForTimeout(3000);
-
-  const str_count_of_properties = await page.$eval("span[aria-label = 'Summary text']", span => span.textContent);
-
-  console.log(str_count_of_properties);
-
-  const test = str_count_of_properties.match(/(\d{1,3}(,\d{3})*)(?=\sProperties)/);
-
-  const count_of_properties = Number(test[0].replace(/,/g,''));
-
-  const count_of_page = Math.ceil(count_of_properties/24);
-
-  return count_of_page;
-}
-
 module.exports = {
-  getProductFromPOS,
-  getCount_of_page
+  getPhone_number,
 };
