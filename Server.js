@@ -21,26 +21,12 @@ app.post('/', async function (req, res) {
 app.listen(3000, async function () {
   console.log('app listening on port 3000!')
   let properties = [];
-  // const count_of_page = await getCount_of_page();
 
   const count_of_page = 10;
   const count_of_browser = 6;
 
-  const onetime = Math.floor(count_of_page/count_of_browser);
-
-  // for(let i = 0; i < count_of_browser; i ++) {
-    
-    const property_data = await getPhone_number(0, 2);
-    // getProductFromPOS(0, 10)
-    // .then(property_data => {
-
-    //   properties = [...properties, ...property_data];
-    // })
-
-    // i += onetime;
-  // } 
-
-
+  const property_data = await getPhone_number(0, 2);
+  
   const workbook = XLSX.utils.book_new();
 
   const worksheet = XLSX.utils.json_to_sheet(property_data);

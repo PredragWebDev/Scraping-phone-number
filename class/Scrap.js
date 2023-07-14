@@ -11,7 +11,6 @@ const getPhone_number = async ( from, to) => {
   let count = 0;
   let result = [];
   let isError = false;
-  // chromeOptions.headless();
   
   do {
 
@@ -33,8 +32,6 @@ const getPhone_number = async ( from, to) => {
 
         const mans = await page.$$('div[data-test="agent-card"]');
 
-        // console.log("mans>>>", mans);
-  
         if (mans !== null) 
         {
 
@@ -42,11 +39,6 @@ const getPhone_number = async ( from, to) => {
     
             name = "";
             phone = "";
-
-            // const exist_card = card.$('a[data-test="agent-card-phone"]');
-
-    
-            // if (exist_card !== null) {
 
             try {
               phone = await card.$eval('a[data-test="agent-card-phone"]', a => a.textContent);
