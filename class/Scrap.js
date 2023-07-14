@@ -18,14 +18,14 @@ const getPhone_number = async ( from, to) => {
 
     try {
 
-      // let browser = await puppeteer.launch({ headless: false });
+      let browser = await puppeteer.launch({ headless: false });
 
       // let residential, bed, bath, price, currency, frequency, locate, area, studio;
 
   
-      // let page = await browser.newPage();
+      let page = await browser.newPage();
     
-      // await page.goto(url, { waitUntil: 'networkidle0', timeout: 0 });
+      await page.goto(url, { waitUntil: 'networkidle0', timeout: 0 });
       // await page.click('button[aria-label="Open Menu"]')
       // await page.click('#signInLink');
       // await page.waitForNavigation({ waitUntil: 'networkidle0' });
