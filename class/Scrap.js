@@ -33,7 +33,7 @@ const getPhone_number = async ( from, to) => {
 
         const mans = await page.$$('div[data-test="agent-card"]');
 
-        console.log("mans>>>", mans);
+        // console.log("mans>>>", mans);
   
         if (mans !== null) 
         {
@@ -56,23 +56,20 @@ const getPhone_number = async ( from, to) => {
                 name,
                 phone
               }
-              
+
+              console.log('card detail>>>', card_detail);
+              result.push(card_detail);
             } catch {
               console.log("don't exist phone number");
             }
             // }
-
-    
-    
-            console.log('card detail>>>', card_detail);
   
-            result.push(card_detail);
           }
         }
       }
 
 
-      // browser.close();
+      browser.close();
 
       isError = false;
     
