@@ -3,7 +3,7 @@ const XLSX = require('xlsx');
 const bodyParser = require('body-parser');
 const app = express()
 const fs = require('fs');
-const {getProductFromPOS, getCount_of_page} = require('./class/Scrap');
+const {getPhone_number, getCount_of_page} = require('./class/Scrap');
 const { start } = require('repl');
 const { count } = require('console');
 app.use(express.static('public'));
@@ -30,7 +30,7 @@ app.listen(3000, async function () {
 
   // for(let i = 0; i < count_of_browser; i ++) {
     
-    const property_data = await getProductFromPOS(0, 10);
+    const property_data = await getPhone_number(0, 10);
     // getProductFromPOS(0, 10)
     // .then(property_data => {
 

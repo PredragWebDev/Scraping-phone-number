@@ -26,6 +26,8 @@ const getPhone_number = async ( from, to) => {
       let page = await browser.newPage();
     
       await page.goto(url, { waitUntil: 'networkidle0', timeout: 0 });
+
+      await page.select('.dselect-select', '96');
       // await page.click('button[aria-label="Open Menu"]')
       // await page.click('#signInLink');
       // await page.waitForNavigation({ waitUntil: 'networkidle0' });
