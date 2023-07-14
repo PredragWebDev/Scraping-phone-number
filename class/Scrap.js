@@ -1,8 +1,4 @@
 
-const { By, until, Builder} = require('selenium-webdriver');
-const webdriver = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
-// const firefox = require('selenium-webdriver/firefox'); 
 const puppeteer = require("puppeteer");
 
 const fs = require('fs');
@@ -22,27 +18,6 @@ const getPhone_number = async ( from, to) => {
 
     try {
 
-      let driver = new webdriver.Builder()
-      .forBrowser(webdriver.Browser.CHROME)
-      .setChromeOptions(chromeOptions)
-      .build();
-
-      await driver.get(url);
-      await driver.sleep(5000);
-      await driver.findElement(By.css("button[aria-label='Open Menu']")).click();
-      await driver.navigate().forward();
-      
-      await driver.findElement(By.css('#signInLink')).click();
-      await driver.wait(until.urlContains('login'), 10000);
-      await driver.navigate().forward();
-      await driver.sleep(5000);
-
-      // await driver.findElement(By.css('#userName')).sendKeys('leobrown0921');
-      // await driver.findElement(By.css('#password')).sendKeys('superage0611');
-      // await driver.findElement(By.css('#login')).click();
-
-      // await driver.wait(until.urlIs('https://www.familysearch.org/search/'), 10000);
-      // await driver.get('https://www.familysearch.org/search/');
       // let browser = await puppeteer.launch({ headless: false });
 
       // let residential, bed, bath, price, currency, frequency, locate, area, studio;
