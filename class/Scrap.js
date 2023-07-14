@@ -43,20 +43,26 @@ const getPhone_number = async ( from, to) => {
             name = "";
             phone = "";
 
-            const exist_card = card.$('a[data-test="agent-card-phone"]');
+            // const exist_card = card.$('a[data-test="agent-card-phone"]');
 
     
-            if (exist_card !== null) {
+            // if (exist_card !== null) {
 
+            try {
               phone = await card.$eval('a[data-test="agent-card-phone"]', a => a.textContent);
               name = await card.$eval('a[data-test="agent-card-name"]', a => a.textContent);
+              
+              const card_detail = {
+                name,
+                phone
+              }
+              
+            } catch {
+              console.log("don't exist phone number");
             }
+            // }
 
     
-            const card_detail = {
-              name,
-              phone
-            }
     
             console.log('card detail>>>', card_detail);
   
