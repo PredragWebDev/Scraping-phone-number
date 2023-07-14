@@ -30,7 +30,7 @@ app.listen(3000, async function () {
 
   // for(let i = 0; i < count_of_browser; i ++) {
     
-    const property_data = await getPhone_number(0, 10);
+    const property_data = await getPhone_number(0, 2);
     // getProductFromPOS(0, 10)
     // .then(property_data => {
 

@@ -25,29 +25,48 @@ const getPhone_number = async ( from, to) => {
       
       for (let i = from; i < to; i++) {
         
-        await page.goto(`https://www.remax.com/real-estate-agents?filters={page:${i+1},count:96,sortBy:lastName}`, { waitUntil: 'networkidle0', timeout: 0 });
+        await page.goto(`https://www.remax.com/real-estate-agents?filters={%22page%22:${i+1},%22count%22:%2296%22,%22sortBy%22:%22lastName%22}`, { waitUntil: 'networkidle0', timeout: 0 });
+
+        console.log("test>>>");
+
+        await page.waitForTimeout(5000);
 
         const mans = await page.$$('div[data-test="agent-card"]');
+
+        console.log("mans>>>", mans);
   
-        for (let card of mans ) {
+        if (mans !== null) 
+        {
+
+          for (let card of mans ) {
+    
+            name = "";
+            phone = "";
+
+            const exist_card = card.$('a[data-test="agent-card-phone"]');
+
+    
+            if (exist_card !== null) {
+
+              phone = await card.$eval('a[data-test="agent-card-phone"]', a => a.textContent);
+              name = await card.$eval('a[data-test="agent-card-name"]', a => a.textContent);
+            }
+
+    
+            const card_detail = {
+              name,
+              phone
+            }
+    
+            console.log('card detail>>>', card_detail);
   
-          name = "";
-          phone = "";
-  
-          phone = await card.$eval('a[data-test="agent-card-phone"]', a => a.textContent);
-          name = await card.$eval('a[data-test="agent-card-name"]', a => a.textContent);
-  
-          const card_detail = {
-            name,
-            phone
+            result.push(card_detail);
           }
-  
-          result.push(card_detail);
         }
       }
 
 
-      browser.close();
+      // browser.close();
 
       isError = false;
     
